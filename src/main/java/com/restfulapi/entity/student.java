@@ -1,5 +1,6 @@
 package com.restfulapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,10 @@ public class student {
     private Long id;
 
     private String name;
+
+    @OneToOne(mappedBy = "student", cascade=CascadeType.ALL)
+    @JsonManagedReference
+    private studentprofile studentprofile;
 
 
 }

@@ -1,4 +1,7 @@
 package com.restfulapi.repository;
 
-public class studentrepo {
+import com.restfulapi.entity.student;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface studentrepo extends JpaRepository<student, Long> {
 }

@@ -27,4 +27,13 @@ public class teacher {
     @JsonManagedReference
     private List<course> Coursestought;
 
+    public List<course> getCoursestought() {
+        return Coursestought;
+    }
+
+    public void setCoursestought(List<course> Coursestought) {
+        this.Coursestought = Coursestought;
+        Coursestought.addAll(Coursestought);
+    }
+
 }
