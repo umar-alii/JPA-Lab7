@@ -2,17 +2,16 @@ package com.restfulapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name="Students")
+@Table(name="students")
 public class student {
 
     @Id
@@ -22,13 +21,14 @@ public class student {
     private String name;
 
     @JsonManagedReference
-    @OneToOne(mappedBy = "student", cascade=CascadeType.ALL)
-    private studentprofile studentprofile;
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    private studentprofile studentProfile;
 
-    public void setStudentprofile(studentprofile studentprofile) {
-        this.studentprofile = studentprofile;
-        if (studentprofile != null) {
-            studentprofile.setStudent(this);
-        }
-    }
+    @ManyToMany
+    @JoinTable(
+            name = "student_course",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private List<course> courses;
 }

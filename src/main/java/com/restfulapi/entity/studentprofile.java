@@ -5,9 +5,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name="studentprofile")
+@Table(name="student_profiles")
 @Data
 public class studentprofile {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,10 +16,10 @@ public class studentprofile {
     private String email;
     private String address;
     private String phone;
-    private Long DOB;
+    private Long dob;
 
     @JsonBackReference
     @OneToOne
-    @JoinColumn(name="Student_Id", referencedColumnName="Id")
+    @JoinColumn(name="student_id", referencedColumnName="id")
     private student student;
 }

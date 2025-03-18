@@ -6,22 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class studentservice {
+
     @Autowired
-    private studentrepo studentrepo;
+    private studentrepo studentRepository;
 
-    public student savestudent(student Student){
-        return studentrepo.save(Student);
+    public student saveStudent(student student) {
+        return studentRepository.save(student);
     }
 
-    public List<student> getallstudents(){
-        return studentrepo.findAll();
+    public List<student> getAllStudents() {
+        return studentRepository.findAll();
     }
 
-    public student getstudentbyid(Long id){
-        return studentrepo.findById(id).get();
+    public Optional<student> getStudentById(Long id) {
+        return studentRepository.findById(id);
     }
-
 }

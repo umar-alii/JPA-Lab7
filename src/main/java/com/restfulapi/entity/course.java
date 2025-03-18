@@ -1,24 +1,28 @@
 package com.restfulapi.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
-@Table(name="Courses")
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
+@Table(name="courses")
 public class course {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int CourseID;
+    private Long id;
 
-    private String Coursename;
+    private String courseName;
 
-    private int credits;
+    @ManyToOne
+    @JoinColumn(name="professor_id")
+    private teacher professor;
 
+    @ManyToMany(mappedBy = "courses")
+    private List<student> students;
 }

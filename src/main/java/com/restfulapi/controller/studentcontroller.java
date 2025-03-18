@@ -6,28 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/students")
 public class studentcontroller {
-    @Autowired
-    private studentservice stdservice;
 
-    @PostMapping()
-    public student addstudent(@RequestBody student student){
-        /*if(student.getStudentprofile() != null){
-            student.getStudentprofile().setStudent(student);
-        }*/
-        return stdservice.savestudent(student);
+    @Autowired
+    private studentservice studentService;
+
+    @PostMapping
+    public student addStudent(@RequestBody student student) {
+        return studentService.saveStudent(student);
     }
 
     @GetMapping("/all")
-    public List<student> getAllstudent(){
-        return stdservice.getallstudents();
+    public List<student> getAllStudents() {
+        return studentService.getAllStudents();
     }
 
-    @GetMapping("get/{id}")
-    public student getstudentbyid(@PathVariable Long id){
-        return stdservice.getstudentbyid(id);
+    @GetMapping("/{id}")
+    public Optional<student> getStudentById(@PathVariable Long id) {
+        return studentService.getStudentById(id);
     }
 }
