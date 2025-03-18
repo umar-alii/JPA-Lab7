@@ -15,9 +15,9 @@ public class studentcontroller {
 
     @PostMapping()
     public student addstudent(@RequestBody student student){
-        if(student.getStudentprofile() != null){
+        /*if(student.getStudentprofile() != null){
             student.getStudentprofile().setStudent(student);
-        }
+        }*/
         return stdservice.savestudent(student);
     }
 

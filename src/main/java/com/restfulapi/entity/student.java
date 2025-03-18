@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 @Entity
 @AllArgsConstructor
@@ -14,12 +13,10 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @Table(name="Students")
-@Component
 public class student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     private String name;
@@ -30,8 +27,8 @@ public class student {
 
     public void setStudentprofile(studentprofile studentprofile) {
         this.studentprofile = studentprofile;
-        studentprofile.setStudent(this);
+        if (studentprofile != null) {
+            studentprofile.setStudent(this);
+        }
     }
-
-
 }

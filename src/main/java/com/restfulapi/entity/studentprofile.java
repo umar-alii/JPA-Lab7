@@ -9,21 +9,16 @@ import lombok.Data;
 @Data
 public class studentprofile {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String email;
-
     private String address;
-
     private String phone;
-
     private Long DOB;
 
     @JsonBackReference
     @OneToOne
     @JoinColumn(name="Student_Id", referencedColumnName="Id")
     private student student;
-
-
-
 }
