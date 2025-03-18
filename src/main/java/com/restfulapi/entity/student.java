@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 @Entity
 @AllArgsConstructor
@@ -13,6 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name="Students")
+@Component
 public class student {
 
     @Id
@@ -22,9 +24,14 @@ public class student {
 
     private String name;
 
-    @OneToOne(mappedBy = "student", cascade=CascadeType.ALL)
     @JsonManagedReference
+    @OneToOne(mappedBy = "student", cascade=CascadeType.ALL)
     private studentprofile studentprofile;
+
+    public void setStudentprofile(studentprofile studentprofile) {
+        this.studentprofile = studentprofile;
+        studentprofile.setStudent(this);
+    }
 
 
 }

@@ -21,7 +21,7 @@ public class studentprofile {
 
     @JsonBackReference
     @OneToOne
-    @JoinColumn(name="Student_ID", referencedColumnName="Id")
+    @JoinColumn(name="Student_Id", referencedColumnName="Id")
     private student student;
 
 
